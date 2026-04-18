@@ -1,29 +1,30 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Agregar soporte para MVC
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Manejo de errores en producción
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
+// Redirección HTTPS
 app.UseHttpsRedirection();
+
+// 🔥 Necesario para CSS, Bootstrap, JS
+app.UseStaticFiles();
+
 app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapStaticAssets();
-
+// Ruta por defecto (inicia en Productos)
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
+    pattern: "{controller=Productos}/{action=Index}/{id?}");
 
 app.Run();
