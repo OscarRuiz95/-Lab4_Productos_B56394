@@ -1,0 +1,12 @@
+﻿@model DirectorioDeProductos.Models.Producto
+
+<h2>Detalles del Producto</h2>
+
+<div>
+    <p><strong>Id:</strong> @Model.Id</p>
+    <p><strong>Nombre:</strong> @Model.Nombre</p>
+    <p><strong>Precio:</strong> @Model.Precio.ToString("C")</p>
+    <p><strong>Categoría:</strong> @Model.Categoria</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary">Volver</a>
